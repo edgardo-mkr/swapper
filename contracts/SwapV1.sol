@@ -19,7 +19,7 @@ contract swapV1 is Initializable {
     function swapTokens(uint[3] memory _amountOfTokens) public payable {
         uint totalPorcent = _amountOfTokens[0]+_amountOfTokens[1]+_amountOfTokens[2];
         require(totalPorcent == 100, "Error in porcentages of required tokens");//checking that the porcentages sum 100
-        uint finalAmount = msg.value - (msg.value/100);//substracting the fee from the deposited amount
+        uint finalAmount = msg.value - (msg.value/1000);//substracting the fee from the deposited amount
         uint daiAmount = (finalAmount * _amountOfTokens[0])/100; //calculating the diferent amounts to swap for each token
         uint linkAmount = (finalAmount * _amountOfTokens[1])/100;//...
         uint uniAmount = (finalAmount * _amountOfTokens[2])/100;//...
@@ -27,7 +27,7 @@ contract swapV1 is Initializable {
         address[] memory path = new address[](2);
         path[0] = uniSwap.WETH();
         
-        payable(owner).call{value: msg.value/100}("");//transfering the fee to the recipient (owner)
+        payable(owner).call{value: msg.value/1000}("");//transfering the fee to the recipient (owner)
         
         if(_amountOfTokens[0] > 0){
             path[1] = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
