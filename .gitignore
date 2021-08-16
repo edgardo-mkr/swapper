@@ -5,6 +5,17 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+#Hardhat project 
+  
+node_modules/
+build/
+artifacts/
+cache/
+package-lock.json
+.env
+yarn.lock
+
 ### Eclipse template
 
 .metadata

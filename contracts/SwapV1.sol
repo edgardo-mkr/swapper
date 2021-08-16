@@ -1,4 +1,4 @@
-pragma solidity ^0.7.3;
+pragma solidity ^0.8.0;
 
 import "./interfaces/IUniswapV2Router.sol";
 import "./interfaces/Initializable.sol";
@@ -32,17 +32,17 @@ contract SwapV1 is Initializable {
         if(_amountOfTokens[0] > 0){
             path[1] = 0x6B175474E89094C44Da98b954EedeAC495271d0F;//Dai contract address
             expectedAmount = uniSwap.getAmountsOut(daiAmount,path);
-            uniSwap.swapExactETHForTokens{value: daiAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 60);
+            uniSwap.swapExactETHForTokens{value: daiAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 3600);
         }
         if(_amountOfTokens[1] > 0){
             path[1] = 0x514910771AF9Ca656af840dff83E8264EcF986CA;//Link contract address
             expectedAmount = uniSwap.getAmountsOut(linkAmount,path);
-            uniSwap.swapExactETHForTokens{value: linkAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 60);
+            uniSwap.swapExactETHForTokens{value: linkAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 3600);
         }
         if(_amountOfTokens[2] > 0){
             path[1] = 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984;//Uni contract address
             expectedAmount = uniSwap.getAmountsOut(uniAmount,path);
-            uniSwap.swapExactETHForTokens{value: uniAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 60);
+            uniSwap.swapExactETHForTokens{value: uniAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 3600);
         }
         return true;
     }
