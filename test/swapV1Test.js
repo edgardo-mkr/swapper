@@ -57,7 +57,7 @@ const { expect } = require("chai");
     describe("Confirm successful swap of tokens", function (){
         it("Should swap ether to dai", async function () {
             const initialBalance = await provider.getBalance(owner.address);
-            const SwapTransac = await hardhatSwap.connect(addr1).swapTokens([100,0,0], {from:addr1.address, value: ethers.utils.parseEther('1')})
+            const SwapTransac = await hardhatSwap.connect(addr1).swapTokens([100,0,0], {from:addr1.address, value:ethers.utils.parseEther('1.0')})
             await SwapTransac.wait();
             // expect(SwapTransac).to.equal(true);
             expect(initialBalance).to.be.below(await provider.getBalance(owner.address));

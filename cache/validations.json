@@ -1,0 +1,826 @@
+{
+  "version": "3.2",
+  "log": [
+    {
+      "SwapV1": {
+        "src": "contracts/SwapV1.sol:6",
+        "version": {
+          "withMetadata": "c07e42e54864890b3ffa7a97802e5906989e5de72a56982ff3c1befedb68323f",
+          "withoutMetadata": "6061a938222d2012f96d774003d3f9542917f0cae4638425ec16f1f73f4c3d96",
+          "linkedWithoutMetadata": "6061a938222d2012f96d774003d3f9542917f0cae4638425ec16f1f73f4c3d96"
+        },
+        "inherit": [
+          "Initializable"
+        ],
+        "libraries": [],
+        "methods": [
+          "(address)",
+          "swapTokens(uint256[3])"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "SwapV1",
+            "src": "contracts/SwapV1.sol:10"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "SwapV1",
+              "label": "owner",
+              "type": "t_address",
+              "src": "contracts/SwapV1.sol:7"
+            },
+            {
+              "contract": "SwapV1",
+              "label": "uniSwap",
+              "type": "t_contract(IUniswapV2Router)294",
+              "src": "contracts/SwapV1.sol:8"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address"
+            },
+            "t_contract(IUniswapV2Router)294": {
+              "label": "contract IUniswapV2Router"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "IUniswapV2Router": {
+        "src": "contracts/interfaces/IUniswapV2Router.sol:3",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "WETH()",
+          "swapExactETHForTokens(uint256,address[],address,uint256)",
+          "getAmountsOut(uint256,address[])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Initializable": {
+        "src": "contracts/interfaces/Initializable.sol:18",
+        "version": {
+          "withMetadata": "327a460e76a2dc7e122a7985f97d45b3109e20e04fe3e51e3b09b85d08202f18",
+          "withoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b",
+          "linkedWithoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Initializable",
+              "label": "initialized",
+              "type": "t_bool",
+              "src": "contracts/interfaces/Initializable.sol:23"
+            },
+            {
+              "contract": "Initializable",
+              "label": "initializing",
+              "type": "t_bool",
+              "src": "contracts/interfaces/Initializable.sol:28"
+            },
+            {
+              "contract": "Initializable",
+              "label": "______gap",
+              "type": "t_array(t_uint256)50_storage",
+              "src": "contracts/interfaces/Initializable.sol:63"
+            }
+          ],
+          "types": {
+            "t_bool": {
+              "label": "bool"
+            },
+            "t_array(t_uint256)50_storage": {
+              "label": "uint256[50]"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    },
+    {
+      "SwapV2": {
+        "src": "contracts/SwapV2.sol:6",
+        "version": {
+          "withMetadata": "c185776b47ef6c3b3bf8734d787bdd377e9f0b4e28ca12cff86c8881125194c6",
+          "withoutMetadata": "30fddd7527e294dd149f25f66e2805b0c866b7b2975b4d84b94ed687b6d9eeaa",
+          "linkedWithoutMetadata": "30fddd7527e294dd149f25f66e2805b0c866b7b2975b4d84b94ed687b6d9eeaa"
+        },
+        "inherit": [
+          "Initializable"
+        ],
+        "libraries": [],
+        "methods": [
+          "initialize(address)",
+          "decideProtocol(string)",
+          "swapTokens(uint256[3])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "SwapV2",
+              "label": "owner",
+              "type": "t_address",
+              "src": "contracts/SwapV2.sol:7"
+            },
+            {
+              "contract": "SwapV2",
+              "label": "uniSwap",
+              "type": "t_contract(IUniswapV2Router)350",
+              "src": "contracts/SwapV2.sol:8"
+            },
+            {
+              "contract": "SwapV2",
+              "label": "sushiSwap",
+              "type": "t_contract(IUniswapV2Router)350",
+              "src": "contracts/SwapV2.sol:9"
+            },
+            {
+              "contract": "SwapV2",
+              "label": "protocol",
+              "type": "t_contract(IUniswapV2Router)350",
+              "src": "contracts/SwapV2.sol:10"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address"
+            },
+            "t_contract(IUniswapV2Router)350": {
+              "label": "contract IUniswapV2Router"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "IUniswapV2Router": {
+        "src": "contracts/interfaces/IUniswapV2Router.sol:3",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "WETH()",
+          "swapExactETHForTokens(uint256,address[],address,uint256)",
+          "getAmountsOut(uint256,address[])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Initializable": {
+        "src": "contracts/interfaces/Initializable.sol:18",
+        "version": {
+          "withMetadata": "327a460e76a2dc7e122a7985f97d45b3109e20e04fe3e51e3b09b85d08202f18",
+          "withoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b",
+          "linkedWithoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Initializable",
+              "label": "initialized",
+              "type": "t_bool",
+              "src": "contracts/interfaces/Initializable.sol:23"
+            },
+            {
+              "contract": "Initializable",
+              "label": "initializing",
+              "type": "t_bool",
+              "src": "contracts/interfaces/Initializable.sol:28"
+            },
+            {
+              "contract": "Initializable",
+              "label": "______gap",
+              "type": "t_array(t_uint256)50_storage",
+              "src": "contracts/interfaces/Initializable.sol:63"
+            }
+          ],
+          "types": {
+            "t_bool": {
+              "label": "bool"
+            },
+            "t_array(t_uint256)50_storage": {
+              "label": "uint256[50]"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    },
+    {
+      "SwapV1": {
+        "src": "contracts/SwapV2.sol:6",
+        "version": {
+          "withMetadata": "df24074b8a245fa0cd4e8b61fadb6e8781d8206b63520d868e506d36c92d4e03",
+          "withoutMetadata": "30fddd7527e294dd149f25f66e2805b0c866b7b2975b4d84b94ed687b6d9eeaa",
+          "linkedWithoutMetadata": "30fddd7527e294dd149f25f66e2805b0c866b7b2975b4d84b94ed687b6d9eeaa"
+        },
+        "inherit": [
+          "Initializable"
+        ],
+        "libraries": [],
+        "methods": [
+          "initialize(address)",
+          "decideProtocol(string)",
+          "swapTokens(uint256[3])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "SwapV1",
+              "label": "owner",
+              "type": "t_address",
+              "src": "contracts/SwapV2.sol:7"
+            },
+            {
+              "contract": "SwapV1",
+              "label": "uniSwap",
+              "type": "t_contract(IUniswapV2Router)613",
+              "src": "contracts/SwapV2.sol:8"
+            },
+            {
+              "contract": "SwapV1",
+              "label": "sushiSwap",
+              "type": "t_contract(IUniswapV2Router)613",
+              "src": "contracts/SwapV2.sol:9"
+            },
+            {
+              "contract": "SwapV1",
+              "label": "protocol",
+              "type": "t_contract(IUniswapV2Router)613",
+              "src": "contracts/SwapV2.sol:10"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address"
+            },
+            "t_contract(IUniswapV2Router)613": {
+              "label": "contract IUniswapV2Router"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "IUniswapV2Router": {
+        "src": "contracts/interfaces/IUniswapV2Router.sol:3",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "WETH()",
+          "swapExactETHForTokens(uint256,address[],address,uint256)",
+          "getAmountsOut(uint256,address[])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Initializable": {
+        "src": "contracts/interfaces/Initializable.sol:18",
+        "version": {
+          "withMetadata": "327a460e76a2dc7e122a7985f97d45b3109e20e04fe3e51e3b09b85d08202f18",
+          "withoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b",
+          "linkedWithoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Initializable",
+              "label": "initialized",
+              "type": "t_bool",
+              "src": "contracts/interfaces/Initializable.sol:23"
+            },
+            {
+              "contract": "Initializable",
+              "label": "initializing",
+              "type": "t_bool",
+              "src": "contracts/interfaces/Initializable.sol:28"
+            },
+            {
+              "contract": "Initializable",
+              "label": "______gap",
+              "type": "t_array(t_uint256)50_storage",
+              "src": "contracts/interfaces/Initializable.sol:63"
+            }
+          ],
+          "types": {
+            "t_bool": {
+              "label": "bool"
+            },
+            "t_array(t_uint256)50_storage": {
+              "label": "uint256[50]"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    },
+    {
+      "SwapV1": {
+        "src": "contracts/SwapV2.sol:6",
+        "version": {
+          "withMetadata": "df24074b8a245fa0cd4e8b61fadb6e8781d8206b63520d868e506d36c92d4e03",
+          "withoutMetadata": "30fddd7527e294dd149f25f66e2805b0c866b7b2975b4d84b94ed687b6d9eeaa",
+          "linkedWithoutMetadata": "30fddd7527e294dd149f25f66e2805b0c866b7b2975b4d84b94ed687b6d9eeaa"
+        },
+        "inherit": [
+          "Initializable"
+        ],
+        "libraries": [],
+        "methods": [
+          "initialize(address)",
+          "decideProtocol(string)",
+          "swapTokens(uint256[3])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "SwapV1",
+              "label": "owner",
+              "type": "t_address",
+              "src": "contracts/SwapV2.sol:7"
+            },
+            {
+              "contract": "SwapV1",
+              "label": "uniSwap",
+              "type": "t_contract(IUniswapV2Router)613",
+              "src": "contracts/SwapV2.sol:8"
+            },
+            {
+              "contract": "SwapV1",
+              "label": "sushiSwap",
+              "type": "t_contract(IUniswapV2Router)613",
+              "src": "contracts/SwapV2.sol:9"
+            },
+            {
+              "contract": "SwapV1",
+              "label": "protocol",
+              "type": "t_contract(IUniswapV2Router)613",
+              "src": "contracts/SwapV2.sol:10"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address"
+            },
+            "t_contract(IUniswapV2Router)613": {
+              "label": "contract IUniswapV2Router"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "IUniswapV2Router": {
+        "src": "contracts/interfaces/IUniswapV2Router.sol:3",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "WETH()",
+          "swapExactETHForTokens(uint256,address[],address,uint256)",
+          "getAmountsOut(uint256,address[])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Initializable": {
+        "src": "contracts/interfaces/Initializable.sol:18",
+        "version": {
+          "withMetadata": "327a460e76a2dc7e122a7985f97d45b3109e20e04fe3e51e3b09b85d08202f18",
+          "withoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b",
+          "linkedWithoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Initializable",
+              "label": "initialized",
+              "type": "t_bool",
+              "src": "contracts/interfaces/Initializable.sol:23"
+            },
+            {
+              "contract": "Initializable",
+              "label": "initializing",
+              "type": "t_bool",
+              "src": "contracts/interfaces/Initializable.sol:28"
+            },
+            {
+              "contract": "Initializable",
+              "label": "______gap",
+              "type": "t_array(t_uint256)50_storage",
+              "src": "contracts/interfaces/Initializable.sol:63"
+            }
+          ],
+          "types": {
+            "t_bool": {
+              "label": "bool"
+            },
+            "t_array(t_uint256)50_storage": {
+              "label": "uint256[50]"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    },
+    {
+      "swapV1": {
+        "src": "contracts/SwapV1.sol:6",
+        "version": {
+          "withMetadata": "ebf966519104b40bf0e58d50cb69ac15516e16ff6fc4b5e912f9716093f4ba63",
+          "withoutMetadata": "f142e2e3eabcfe21338be4982f5fc5975eedfb82f62873064c0cfcbb0a8227fe",
+          "linkedWithoutMetadata": "f142e2e3eabcfe21338be4982f5fc5975eedfb82f62873064c0cfcbb0a8227fe"
+        },
+        "inherit": [
+          "Initializable"
+        ],
+        "libraries": [],
+        "methods": [
+          "initialize(address)",
+          "swapTokens(uint256[3])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "swapV1",
+              "label": "owner",
+              "type": "t_address",
+              "src": "contracts/SwapV1.sol:7"
+            },
+            {
+              "contract": "swapV1",
+              "label": "uniSwap",
+              "type": "t_contract(IUniswapV2Router)296",
+              "src": "contracts/SwapV1.sol:8"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address"
+            },
+            "t_contract(IUniswapV2Router)296": {
+              "label": "contract IUniswapV2Router"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "IUniswapV2Router": {
+        "src": "contracts/interfaces/IUniswapV2Router.sol:3",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "WETH()",
+          "swapExactETHForTokens(uint256,address[],address,uint256)",
+          "getAmountsOut(uint256,address[])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Initializable": {
+        "src": "contracts/interfaces/Initializable.sol:18",
+        "version": {
+          "withMetadata": "327a460e76a2dc7e122a7985f97d45b3109e20e04fe3e51e3b09b85d08202f18",
+          "withoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b",
+          "linkedWithoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Initializable",
+              "label": "initialized",
+              "type": "t_bool",
+              "src": "contracts/interfaces/Initializable.sol:23"
+            },
+            {
+              "contract": "Initializable",
+              "label": "initializing",
+              "type": "t_bool",
+              "src": "contracts/interfaces/Initializable.sol:28"
+            },
+            {
+              "contract": "Initializable",
+              "label": "______gap",
+              "type": "t_array(t_uint256)50_storage",
+              "src": "contracts/interfaces/Initializable.sol:63"
+            }
+          ],
+          "types": {
+            "t_bool": {
+              "label": "bool"
+            },
+            "t_array(t_uint256)50_storage": {
+              "label": "uint256[50]"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    },
+    {
+      "swapV1": {
+        "src": "contracts/SwapV2.sol:6",
+        "version": {
+          "withMetadata": "ac11dee607647c56edabcea5a62608521fecbe6d8e6a10fcf202759e21c5a565",
+          "withoutMetadata": "30fddd7527e294dd149f25f66e2805b0c866b7b2975b4d84b94ed687b6d9eeaa",
+          "linkedWithoutMetadata": "30fddd7527e294dd149f25f66e2805b0c866b7b2975b4d84b94ed687b6d9eeaa"
+        },
+        "inherit": [
+          "Initializable"
+        ],
+        "libraries": [],
+        "methods": [
+          "initialize(address)",
+          "decideProtocol(string)",
+          "swapTokens(uint256[3])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "swapV1",
+              "label": "owner",
+              "type": "t_address",
+              "src": "contracts/SwapV2.sol:7"
+            },
+            {
+              "contract": "swapV1",
+              "label": "uniSwap",
+              "type": "t_contract(IUniswapV2Router)613",
+              "src": "contracts/SwapV2.sol:8"
+            },
+            {
+              "contract": "swapV1",
+              "label": "sushiSwap",
+              "type": "t_contract(IUniswapV2Router)613",
+              "src": "contracts/SwapV2.sol:9"
+            },
+            {
+              "contract": "swapV1",
+              "label": "protocol",
+              "type": "t_contract(IUniswapV2Router)613",
+              "src": "contracts/SwapV2.sol:10"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address"
+            },
+            "t_contract(IUniswapV2Router)613": {
+              "label": "contract IUniswapV2Router"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "IUniswapV2Router": {
+        "src": "contracts/interfaces/IUniswapV2Router.sol:3",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "WETH()",
+          "swapExactETHForTokens(uint256,address[],address,uint256)",
+          "getAmountsOut(uint256,address[])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Initializable": {
+        "src": "contracts/interfaces/Initializable.sol:18",
+        "version": {
+          "withMetadata": "327a460e76a2dc7e122a7985f97d45b3109e20e04fe3e51e3b09b85d08202f18",
+          "withoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b",
+          "linkedWithoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Initializable",
+              "label": "initialized",
+              "type": "t_bool",
+              "src": "contracts/interfaces/Initializable.sol:23"
+            },
+            {
+              "contract": "Initializable",
+              "label": "initializing",
+              "type": "t_bool",
+              "src": "contracts/interfaces/Initializable.sol:28"
+            },
+            {
+              "contract": "Initializable",
+              "label": "______gap",
+              "type": "t_array(t_uint256)50_storage",
+              "src": "contracts/interfaces/Initializable.sol:63"
+            }
+          ],
+          "types": {
+            "t_bool": {
+              "label": "bool"
+            },
+            "t_array(t_uint256)50_storage": {
+              "label": "uint256[50]"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    },
+    {
+      "swapV1": {
+        "src": "contracts/SwapV1.sol:6",
+        "version": {
+          "withMetadata": "cad97624b057e0e477424c93351125ee2196effa122e26207f6be4fd817fe9d7",
+          "withoutMetadata": "efdecdb3ca01219136d8ed77c034191d3760e61d155f11b3103591bc7020beb5",
+          "linkedWithoutMetadata": "efdecdb3ca01219136d8ed77c034191d3760e61d155f11b3103591bc7020beb5"
+        },
+        "inherit": [
+          "Initializable"
+        ],
+        "libraries": [],
+        "methods": [
+          "initialize(address)",
+          "swapTokens(uint256[3])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "swapV1",
+              "label": "owner",
+              "type": "t_address",
+              "src": "contracts/SwapV1.sol:7"
+            },
+            {
+              "contract": "swapV1",
+              "label": "uniSwap",
+              "type": "t_contract(IUniswapV2Router)292",
+              "src": "contracts/SwapV1.sol:8"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address"
+            },
+            "t_contract(IUniswapV2Router)292": {
+              "label": "contract IUniswapV2Router"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "IUniswapV2Router": {
+        "src": "contracts/interfaces/IUniswapV2Router.sol:3",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "WETH()",
+          "swapExactETHForTokens(uint256,address[],address,uint256)",
+          "getAmountsOut(uint256,address[])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Initializable": {
+        "src": "contracts/interfaces/Initializable.sol:18",
+        "version": {
+          "withMetadata": "327a460e76a2dc7e122a7985f97d45b3109e20e04fe3e51e3b09b85d08202f18",
+          "withoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b",
+          "linkedWithoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Initializable",
+              "label": "initialized",
+              "type": "t_bool",
+              "src": "contracts/interfaces/Initializable.sol:23"
+            },
+            {
+              "contract": "Initializable",
+              "label": "initializing",
+              "type": "t_bool",
+              "src": "contracts/interfaces/Initializable.sol:28"
+            },
+            {
+              "contract": "Initializable",
+              "label": "______gap",
+              "type": "t_array(t_uint256)50_storage",
+              "src": "contracts/interfaces/Initializable.sol:63"
+            }
+          ],
+          "types": {
+            "t_bool": {
+              "label": "bool"
+            },
+            "t_array(t_uint256)50_storage": {
+              "label": "uint256[50]"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    }
+  ]
+}
