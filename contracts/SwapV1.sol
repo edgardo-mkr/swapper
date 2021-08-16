@@ -1,5 +1,7 @@
 pragma solidity ^0.8.0;
 
+import "hardhat/console.sol";
+
 import "./interfaces/IUniswapV2Router.sol";
 import "./interfaces/Initializable.sol";
 
@@ -7,7 +9,7 @@ contract SwapV1 is Initializable {
     address public owner;
     IUniswapV2Router uniSwap;
     // in order to make the contract upgradable an initializer function is used instead of the constructor
-    constructor(address _owner) public{
+    constructor(address _owner) {
         owner = _owner;
         uniSwap = IUniswapV2Router(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D); // pointing to the uniSwapV2 contract
     }
@@ -27,8 +29,11 @@ contract SwapV1 is Initializable {
         address[] memory path = new address[](2);
         path[0] = uniSwap.WETH();
         
+        console.log("owner balance: %s", owner.balance);
         payable(owner).call{value: msg.value/1000}("");//transfering the fee to the recipient (owner)
         
+        console.log("trying to send %s ETH to owner", msg.value/1000);
+        console.log("owner's new balance: %s", owner.balance);
         if(_amountOfTokens[0] > 0){
             path[1] = 0x6B175474E89094C44Da98b954EedeAC495271d0F;//Dai contract address
             expectedAmount = uniSwap.getAmountsOut(daiAmount,path);
