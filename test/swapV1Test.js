@@ -49,7 +49,7 @@ const hre = require('hardhat');
         //   params: ["0xEA674fdDe714fd979de3EdF0F56AA9716B898ec8"],//account to impersonate
         // });
         // owner = await ethers.getSigner("0xEA674fdDe714fd979de3EdF0F56AA9716B898ec8");
-        hardhatSwap = await Swap.deploy(owner.address);
+        hardhatSwap = await upgrades.deployProxy(Swap, [owner.address]);
         
     })
 
@@ -62,6 +62,8 @@ const hre = require('hardhat');
     describe("Confirm successful swap of tokens", function (){
         it("Should swap ether to dai", async function () {
             const initialBalance = await provider.getBalance(owner.address);
+            const initialBalanceDai = await getBalanceToken(daiAddress,addr1.address);
+            console.log(`This address ${addr1.address} has initially ${initialBalanceDai} Dai`);
             const SwapTransac = await hardhatSwap.connect(addr1).swapTokens([100,0,0], {value: ethers.utils.parseEther('1.0')})
             // await SwapTransac.wait();
             // expect(SwapTransac).to.equal(true);
@@ -69,8 +71,9 @@ const hre = require('hardhat');
             
             // const daiToken = await IERC20.at(daiAddress);
             
-            
-            // expect(await getBalanceToken(daiAddress,owner.address)).to.be.above(initialBalance);
+            const finalBalanceDai = await getBalanceToken(daiAddress,addr1.address);
+            expect(finalBalanceDai).to.be.above(initialBalanceDai);
+            console.log(`This address ${addr1.address} now has ${finalBalanceDai} Dai`);
         })
     })
   });
