@@ -3,11 +3,11 @@ pragma solidity ^0.7.3;
 import "./interfaces/IUniswapV2Router.sol";
 import "./interfaces/Initializable.sol";
 
-contract swapV1 is Initializable {
-    address owner;
+contract SwapV1 is Initializable {
+    address public owner;
     IUniswapV2Router uniSwap;
     // in order to make the contract upgradable an initializer function is used instead of the constructor
-    function initialize(address _owner) public initializer{
+    constructor(address _owner) public{
         owner = _owner;
         uniSwap = IUniswapV2Router(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D); // pointing to the uniSwapV2 contract
     }
