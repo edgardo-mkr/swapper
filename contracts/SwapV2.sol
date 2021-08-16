@@ -3,7 +3,7 @@ pragma solidity ^0.7.3;
 import "./interfaces/IUniswapV2Router.sol";
 import "./interfaces/Initializable.sol";
 
-contract swapV1 is Initializable {
+contract SwapV2 is Initializable {
     address owner;
     IUniswapV2Router uniSwap;
     IUniswapV2Router sushiSwap;
