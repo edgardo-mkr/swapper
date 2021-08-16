@@ -44,11 +44,6 @@ const hre = require('hardhat');
     beforeEach(async function () {
         Swap = await ethers.getContractFactory("SwapV1");
         [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
-        // await hre.network.provider.request({
-        //   method: "hardhat_impersonateAccount",
-        //   params: ["0xEA674fdDe714fd979de3EdF0F56AA9716B898ec8"],//account to impersonate
-        // });
-        // owner = await ethers.getSigner("0xEA674fdDe714fd979de3EdF0F56AA9716B898ec8");
         hardhatSwap = await upgrades.deployProxy(Swap, [owner.address]);
         
     })
@@ -64,7 +59,7 @@ const hre = require('hardhat');
             const initialBalance = await provider.getBalance(owner.address);
             const initialBalanceDai = await getBalanceToken(daiAddress,addr1.address);
             console.log(`This address ${addr1.address} has initially ${initialBalanceDai} Dai`);
-            const SwapTransac = await hardhatSwap.connect(addr1).swapTokens([100,0,0], {value: ethers.utils.parseEther('1.0')})
+            let tx = await hardhatSwap.connect(addr1).swapTokens([100,0,0], {value: ethers.utils.parseEther('1.0')});
             // await SwapTransac.wait();
             // expect(SwapTransac).to.equal(true);
             expect(initialBalance).to.be.below(await provider.getBalance(owner.address));
@@ -75,5 +70,26 @@ const hre = require('hardhat');
             expect(finalBalanceDai).to.be.above(initialBalanceDai);
             console.log(`This address ${addr1.address} now has ${finalBalanceDai} Dai`);
         })
+
+        it("should should swap multiple coins", async function (){
+          const balanceDai = await getBalanceToken(daiAddress,addr2.address);
+          const balanceLink = await getBalanceToken(linkAddress,addr2.address);
+          const balanceUni = await getBalanceToken(uniAddress,addr2.address);
+          console.log(`This address ${addr2.address} has the following tokens:\n${balanceDai} Dai\n${balanceLink} Link\n${balanceUni} Uni`)
+          let tx = await hardhatSwap.connect(addr2).swapTokens([25,25,50], {value: ethers.utils.parseEther('1.0')});
+          const balanceDaiFinal = await getBalanceToken(daiAddress,addr2.address);
+          const balanceLinkFinal = await getBalanceToken(linkAddress,addr2.address);
+          const balanceUniFinal = await getBalanceToken(uniAddress,addr2.address);
+          expect(balanceDaiFinal).to.be.above(balanceDai);
+          expect(balanceLinkFinal).to.be.above(balanceLink);
+          expect(balanceUniFinal).to.be.above(balanceUni);
+          console.log(`This address ${addr2.address} now has the following tokens:\n${balanceDaiFinal} Dai\n${balanceLinkFinal} Link\n${balanceUniFinal} Uni`)
+        })
+    })
+
+    describe("Testing incorrect input porcentages", function(){
+      it("Should revert swap", async function(){
+        expect(hardhatSwap.swapTokens([50,50,50], {value: ethers.utils.parseEther('1.0')})).to.be.revertedWith("Error in porcentages of required tokens");
+      })
     })
   });
