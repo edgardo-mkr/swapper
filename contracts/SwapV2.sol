@@ -6,7 +6,7 @@ import "./interfaces/IUniswapV2Router.sol";
 import "./interfaces/Initializable.sol";
 
 contract SwapV2 is Initializable {
-    address owner;
+    address public owner;
     IUniswapV2Router uniSwap;
     IUniswapV2Router sushiSwap;
 

@@ -1,8 +1,8 @@
+const axios = require('axios');
 const { Contract } = require('ethers');
 const { ethers, upgrades } = require('hardhat');
 const { expect } = require("chai");
 const hre = require('hardhat');
-// const IERC20 = require("@openzeppelin/contracts/token/ERC20/IERC20.sol");
   const abi = [
     {
         "constant": true,
@@ -33,7 +33,7 @@ const hre = require('hardhat');
     return balance;
   };
   
-  describe("Swap contract", function () {
+  describe("SwapV1 contract", function () {
     let Swap;
     let hardhatSwap;
     let owner;
@@ -60,11 +60,8 @@ const hre = require('hardhat');
             const initialBalanceDai = await getBalanceToken(daiAddress,addr1.address);
             console.log(`This address ${addr1.address} has initially ${initialBalanceDai} Dai`);
             let tx = await hardhatSwap.connect(addr1).swapTokens([100,0,0], {value: ethers.utils.parseEther('1.0')});
-            // await SwapTransac.wait();
-            // expect(SwapTransac).to.equal(true);
+
             expect(initialBalance).to.be.below(await provider.getBalance(owner.address));
-            
-            // const daiToken = await IERC20.at(daiAddress);
             
             const finalBalanceDai = await getBalanceToken(daiAddress,addr1.address);
             expect(finalBalanceDai).to.be.above(initialBalanceDai);
@@ -93,3 +90,88 @@ const hre = require('hardhat');
       })
     })
   });
+
+  //TEST SwapV2
+
+  //calling the the 1Inch API
+  let tokenArr = [daiAddress,linkAddress,uniAddress];
+  let protocolArr = ['','','']; 
+  async function driver(){
+    for(let i = 0; i < tokenArr.length; i++){
+      let callUrl = 'https://api.1inch.exchange/v3.0/1/quote?fromTokenAddress=0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE&'+
+      'toTokenAddress='+ tokenArr[i] +'&amount=1000000000000000000&protocols=SUSHI%2CUNISWAP_V2';
+      try{
+        let temp = await axios.get(callUrl);
+        temp = temp.data;
+        protocolArr[i] = temp.protocols[0][0][0].name;
+        console.log(protocolArr[i]);  
+      } catch (e){
+        console.log("API call failure");
+      }
+    }
+  }
+  driver();
+
+  describe("SwapV2 contract", function () {
+    let SwapV1;
+    let SwapV2;
+    let hardhatSwap;
+    let instance;
+    let owner;
+    let addr1;
+    let addr2;
+    let addrs;
+
+    beforeEach(async function () {
+        SwapV1 = await ethers.getContractFactory("SwapV1");
+        SwapV2 = await ethers.getContractFactory("SwapV2");
+        [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
+        instance = await upgrades.deployProxy(SwapV1, [owner.address]);
+        hardhatSwap = await upgrades.upgradeProxy(instance.address, SwapV2);
+    })
+
+    describe("Deployment", function (){
+        it("Should set the right owner", async function () {
+            expect(await hardhatSwap.owner()).to.equal(owner.address);
+          });
+    })
+
+    describe("Confirm successful swap of tokens", function (){
+        it("Should swap ether to dai with sushiSwap", async function () {
+            const initialBalance = await provider.getBalance(owner.address);
+            const initialBalanceDai = await getBalanceToken(daiAddress,addr1.address);
+            console.log(`This address ${addr1.address} has initially ${initialBalanceDai} Dai`);
+            let tx = await hardhatSwap.connect(addr1).swapTokens(["SUSHI","SUSHI","SUSHI"],[100,0,0], {value: ethers.utils.parseEther('1.0')});
+
+            expect(initialBalance).to.be.below(await provider.getBalance(owner.address));
+            
+            const finalBalanceDai = await getBalanceToken(daiAddress,addr1.address);
+            expect(finalBalanceDai).to.be.above(initialBalanceDai);
+            console.log(`This address ${addr1.address} now has ${finalBalanceDai} Dai`);
+        })
+
+        it("should should swap multiple coins with the best DEX", async function (){
+          const balanceDai = await getBalanceToken(daiAddress,addr2.address);
+          const balanceLink = await getBalanceToken(linkAddress,addr2.address);
+          const balanceUni = await getBalanceToken(uniAddress,addr2.address);
+          console.log(`This address ${addr2.address} has the following tokens:\n${balanceDai} Dai\n${balanceLink} Link\n${balanceUni} Uni`)
+          let tx = await hardhatSwap.connect(addr2).swapTokens(protocolArr,[25,25,50], {value: ethers.utils.parseEther('1.0')});
+          const balanceDaiFinal = await getBalanceToken(daiAddress,addr2.address);
+          const balanceLinkFinal = await getBalanceToken(linkAddress,addr2.address);
+          const balanceUniFinal = await getBalanceToken(uniAddress,addr2.address);
+          expect(balanceDaiFinal).to.be.above(balanceDai);
+          expect(balanceLinkFinal).to.be.above(balanceLink);
+          expect(balanceUniFinal).to.be.above(balanceUni);
+          console.log(`This address ${addr2.address} now has the following tokens:\n${balanceDaiFinal} Dai done with ${protocolArr[0]} protocol\n`+
+          `${balanceLinkFinal} Link done with ${protocolArr[1]} protocol\n`+
+          `${balanceUniFinal} Uni done with ${protocolArr[2]} protocol`);
+        })
+    })
+
+    describe("Testing incorrect input porcentages", function(){
+      it("Should revert swap", async function(){
+        expect(hardhatSwap.swapTokens(protocolArr,[50,50,50], {value: ethers.utils.parseEther('1.0')})).to.be.revertedWith("Error in porcentages of required tokens");
+      })
+    })
+  });
+
