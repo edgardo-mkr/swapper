@@ -17,6 +17,7 @@ contract SwapV2 is Initializable {
     }
 
     function setSushiSwap() external{
+        require(msg.sender == owner);
         sushiSwap = IUniswapV2Router(0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F);// pointing to the sushiSwapV2Router contract, which is the exact same implementation of the UniswapV2Router
     }
 

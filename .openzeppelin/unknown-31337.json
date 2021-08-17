@@ -80,17 +80,17 @@
     },
     {
       "address": "0x922D6956C99E12DFeB3224DEA977D0939758A1Fe",
-      "txHash": "0x55a7b3a6d9d5452351b63ff8e27458ebb111e35d257b717145795608a3f44c52",
+      "txHash": "0x3c37e0ad621a5f40a5192f570cc0b9b9e3c7f88d6cb583b64e5ef93cb634bcb9",
       "kind": "transparent"
     },
     {
       "address": "0xdbC43Ba45381e02825b14322cDdd15eC4B3164E6",
-      "txHash": "0xd273b0c2e8fca017a61cd5950f30a388aa3425e604fa9faa4e5cc6365e87253a",
+      "txHash": "0x6b2284d1be89fafb8ee1b44e47061bec1f9868c9530e7a474706e77964c55fb9",
       "kind": "transparent"
     },
     {
       "address": "0x21dF544947ba3E8b3c32561399E88B52Dc8b2823",
-      "txHash": "0x1dbc2d16a1250e900f93f8a661d685571dfb2441e5f2d14a3dc196f0ce4534f5",
+      "txHash": "0x1e2da401507746f4dd3f5030551a9d3aa9990894352be7933b1fd73779a11adf",
       "kind": "transparent"
     }
   ],
@@ -127,7 +127,7 @@
           {
             "contract": "SwapV1",
             "label": "uniSwap",
-            "type": "t_contract(IUniswapV2Router)735",
+            "type": "t_contract(IUniswapV2Router)742",
             "src": "contracts/SwapV1.sol:10"
           }
         ],
@@ -135,7 +135,7 @@
           "t_address": {
             "label": "address"
           },
-          "t_contract(IUniswapV2Router)735": {
+          "t_contract(IUniswapV2Router)742": {
             "label": "contract IUniswapV2Router"
           },
           "t_bool": {
@@ -150,9 +150,9 @@
         }
       }
     },
-    "98973fc4c9ff6562b3a566f2c8f7d503e87145fb4c9b9a9a2a98730086b1862c": {
+    "03f202a3d72c6b7c614e945f69db622a6635b75160c8131e982dadfb5954217d": {
       "address": "0x1429859428C0aBc9C2C47C8Ee9FBaf82cFA0F20f",
-      "txHash": "0x671eb19ea4e406699ebf5bd3149a6eb814395493323d46e287955ba828c87bef",
+      "txHash": "0xc8f0dc9afa8355cc2baf7e3c34efafd85d16943137036623b8d0dab3b5915197",
       "layout": {
         "storage": [
           {
@@ -182,13 +182,13 @@
           {
             "contract": "SwapV2",
             "label": "uniSwap",
-            "type": "t_contract(IUniswapV2Router)735",
+            "type": "t_contract(IUniswapV2Router)742",
             "src": "contracts/SwapV2.sol:10"
           },
           {
             "contract": "SwapV2",
             "label": "sushiSwap",
-            "type": "t_contract(IUniswapV2Router)735",
+            "type": "t_contract(IUniswapV2Router)742",
             "src": "contracts/SwapV2.sol:11"
           }
         ],
@@ -196,7 +196,7 @@
           "t_address": {
             "label": "address"
           },
-          "t_contract(IUniswapV2Router)735": {
+          "t_contract(IUniswapV2Router)742": {
             "label": "contract IUniswapV2Router"
           },
           "t_bool": {
