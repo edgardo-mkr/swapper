@@ -44,6 +44,16 @@
   },
   "proxies": [
     {
+      "address": "0x162A433068F51e18b7d13932F27e66a3f99E6890",
+      "txHash": "0x033244991de8b87df1bc3121710d0280859dc9884f4930303e12e4c523e13db7",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x5081a39b8A5f0E35a8D959395a630b68B74Dd30f",
+      "txHash": "0xa1ebd22c0ff0c557d73fc5bec8065a830cafdf1d0bca2e14a11c2133a6e83c49",
+      "kind": "transparent"
+    },
+    {
       "address": "0x2bdCC0de6bE1f7D2ee689a0342D76F52E8EFABa3",
       "txHash": "0xb230baac1d4a5a74bf9c52a0702fdad62e09d6bcebe6e1ae601fef949d6a414a",
       "kind": "transparent"
@@ -69,18 +79,18 @@
       "kind": "transparent"
     },
     {
-      "address": "0x162A433068F51e18b7d13932F27e66a3f99E6890",
-      "txHash": "0x033244991de8b87df1bc3121710d0280859dc9884f4930303e12e4c523e13db7",
-      "kind": "transparent"
-    },
-    {
-      "address": "0x5081a39b8A5f0E35a8D959395a630b68B74Dd30f",
-      "txHash": "0xa1ebd22c0ff0c557d73fc5bec8065a830cafdf1d0bca2e14a11c2133a6e83c49",
+      "address": "0x922D6956C99E12DFeB3224DEA977D0939758A1Fe",
+      "txHash": "0x55a7b3a6d9d5452351b63ff8e27458ebb111e35d257b717145795608a3f44c52",
       "kind": "transparent"
     },
     {
       "address": "0xdbC43Ba45381e02825b14322cDdd15eC4B3164E6",
-      "txHash": "0x9cfe58da5ef2d2d9c8acfdb59ff824b9c9875020951db1159e972b423fedff39",
+      "txHash": "0xd273b0c2e8fca017a61cd5950f30a388aa3425e604fa9faa4e5cc6365e87253a",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x21dF544947ba3E8b3c32561399E88B52Dc8b2823",
+      "txHash": "0x1dbc2d16a1250e900f93f8a661d685571dfb2441e5f2d14a3dc196f0ce4534f5",
       "kind": "transparent"
     }
   ],
@@ -117,7 +127,7 @@
           {
             "contract": "SwapV1",
             "label": "uniSwap",
-            "type": "t_contract(IUniswapV2Router)731",
+            "type": "t_contract(IUniswapV2Router)735",
             "src": "contracts/SwapV1.sol:10"
           }
         ],
@@ -125,7 +135,7 @@
           "t_address": {
             "label": "address"
           },
-          "t_contract(IUniswapV2Router)731": {
+          "t_contract(IUniswapV2Router)735": {
             "label": "contract IUniswapV2Router"
           },
           "t_bool": {
@@ -140,9 +150,9 @@
         }
       }
     },
-    "3859f8c6814583bc8393c45dc4ddfab8d20ec0c7bd585da56d290247c1fdcf2d": {
+    "98973fc4c9ff6562b3a566f2c8f7d503e87145fb4c9b9a9a2a98730086b1862c": {
       "address": "0x1429859428C0aBc9C2C47C8Ee9FBaf82cFA0F20f",
-      "txHash": "0x98fc5f710441109f5c63c98ef9224d89c4ce67191df1f4a2b6c8b1248338c876",
+      "txHash": "0x671eb19ea4e406699ebf5bd3149a6eb814395493323d46e287955ba828c87bef",
       "layout": {
         "storage": [
           {
@@ -172,13 +182,13 @@
           {
             "contract": "SwapV2",
             "label": "uniSwap",
-            "type": "t_contract(IUniswapV2Router)731",
+            "type": "t_contract(IUniswapV2Router)735",
             "src": "contracts/SwapV2.sol:10"
           },
           {
             "contract": "SwapV2",
             "label": "sushiSwap",
-            "type": "t_contract(IUniswapV2Router)731",
+            "type": "t_contract(IUniswapV2Router)735",
             "src": "contracts/SwapV2.sol:11"
           }
         ],
@@ -186,7 +196,7 @@
           "t_address": {
             "label": "address"
           },
-          "t_contract(IUniswapV2Router)731": {
+          "t_contract(IUniswapV2Router)735": {
             "label": "contract IUniswapV2Router"
           },
           "t_bool": {

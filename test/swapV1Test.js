@@ -128,6 +128,7 @@ const hre = require('hardhat');
         [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
         instance = await upgrades.deployProxy(SwapV1, [owner.address]);
         hardhatSwap = await upgrades.upgradeProxy(instance.address, SwapV2);
+        await hardhatSwap.setSushiSwap();
     })
 
     describe("Deployment", function (){

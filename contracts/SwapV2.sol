@@ -14,7 +14,10 @@ contract SwapV2 is Initializable {
     function initialize(address _owner) public initializer{
         owner = _owner;
         uniSwap = IUniswapV2Router(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);// pointing to the uniSwapV2Router contract
-        sushiSwap = IUniswapV2Router(0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F);// pointing to the sushiSwapV2Router contract, which is the exact same implementation of the UniswapV2Router 
+    }
+
+    function setSushiSwap() external{
+        sushiSwap = IUniswapV2Router(0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F);// pointing to the sushiSwapV2Router contract, which is the exact same implementation of the UniswapV2Router
     }
 
     function swapTokens(string[3] memory _protocols, uint[3] memory _amountOfTokens) external payable returns(bool){
