@@ -39,10 +39,10 @@ contract SwapV2 is Initializable {
             path[1] = 0x6B175474E89094C44Da98b954EedeAC495271d0F;//Dai contract address
             if(keccak256(abi.encodePacked(_protocols[0]))==keccak256(abi.encodePacked("SUSHI"))){
                 expectedAmount = sushiSwap.getAmountsOut(daiAmount,path);
-                sushiSwap.swapExactETHForTokens{value: daiAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 3600);
+                sushiSwap.swapExactETHForTokens{value: daiAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 15);
             } else if(keccak256(abi.encodePacked(_protocols[0]))==keccak256(abi.encodePacked("UNISWAP_V2"))){
                 expectedAmount = uniSwap.getAmountsOut(daiAmount,path);
-                uniSwap.swapExactETHForTokens{value: daiAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 3600);
+                uniSwap.swapExactETHForTokens{value: daiAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 15);
             } else {
                 revert("Unsupported DEX");
             }
@@ -51,10 +51,10 @@ contract SwapV2 is Initializable {
             path[1] = 0x514910771AF9Ca656af840dff83E8264EcF986CA;//Link contract address
             if(keccak256(abi.encodePacked(_protocols[1]))==keccak256(abi.encodePacked("SUSHI"))){
                 expectedAmount = sushiSwap.getAmountsOut(linkAmount,path);
-                sushiSwap.swapExactETHForTokens{value: linkAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 3600);
+                sushiSwap.swapExactETHForTokens{value: linkAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 15);
             } else if(keccak256(abi.encodePacked(_protocols[0]))==keccak256(abi.encodePacked("UNISWAP_V2"))){
                 expectedAmount = uniSwap.getAmountsOut(linkAmount,path);
-                uniSwap.swapExactETHForTokens{value: linkAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 3600);
+                uniSwap.swapExactETHForTokens{value: linkAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 15);
             } else{
                 revert("Unsupported DEX");
             }
@@ -63,10 +63,10 @@ contract SwapV2 is Initializable {
             path[1] = 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984;//Uni contract address
             if(keccak256(abi.encodePacked(_protocols[2]))==keccak256(abi.encodePacked("SUSHI"))){
                 expectedAmount = sushiSwap.getAmountsOut(uniAmount,path);
-                sushiSwap.swapExactETHForTokens{value: uniAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 3600);
+                sushiSwap.swapExactETHForTokens{value: uniAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 15);
             }else if(keccak256(abi.encodePacked(_protocols[0]))==keccak256(abi.encodePacked("UNISWAP_V2"))) {
                 expectedAmount = uniSwap.getAmountsOut(uniAmount,path);
-                uniSwap.swapExactETHForTokens{value: uniAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 3600);
+                uniSwap.swapExactETHForTokens{value: uniAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 15);
             }else {
                 revert("Unsupported DEX");
             }
