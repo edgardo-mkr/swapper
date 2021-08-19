@@ -22,8 +22,9 @@ contract SwapV2 is Initializable {
     }
 
     function swapTokens(string[3] memory _protocols, uint[3] memory _amountOfTokens) external payable returns(bool){
-        uint totalPorcent = _amountOfTokens[0]+_amountOfTokens[1]+_amountOfTokens[2];
-        require(totalPorcent == 100, "Error in porcentages of required tokens");//checking that the porcentages sum 100
+        require(_amountOfTokens[0]>=0 && _amountOfTokens[1]>=0 && _amountOfTokens[2]>=0, "Negative percentages not allow");
+        require(_amountOfTokens[0]+_amountOfTokens[1]+_amountOfTokens[2] == 100, "Error in percentages of required tokens");//checking that the porcentages sum 100
+        require(msg.value > 0, "No Ether has been sent");
         uint finalAmount = msg.value - (msg.value/1000);//substracting the fee from the deposited amount
         uint daiAmount = (finalAmount * _amountOfTokens[0])/100; //calculating the diferent amounts to swap for each token
         uint linkAmount = (finalAmount * _amountOfTokens[1])/100;//...
@@ -39,9 +40,11 @@ contract SwapV2 is Initializable {
             if(keccak256(abi.encodePacked(_protocols[0]))==keccak256(abi.encodePacked("SUSHI"))){
                 expectedAmount = sushiSwap.getAmountsOut(daiAmount,path);
                 sushiSwap.swapExactETHForTokens{value: daiAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 3600);
-            } else{
+            } else if(keccak256(abi.encodePacked(_protocols[0]))==keccak256(abi.encodePacked("UNISWAP_V2"))){
                 expectedAmount = uniSwap.getAmountsOut(daiAmount,path);
                 uniSwap.swapExactETHForTokens{value: daiAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 3600);
+            } else {
+                revert("Unsupported DEX");
             }
         }
         if(_amountOfTokens[1] > 0){
@@ -49,9 +52,11 @@ contract SwapV2 is Initializable {
             if(keccak256(abi.encodePacked(_protocols[1]))==keccak256(abi.encodePacked("SUSHI"))){
                 expectedAmount = sushiSwap.getAmountsOut(linkAmount,path);
                 sushiSwap.swapExactETHForTokens{value: linkAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 3600);
-            } else{
+            } else if(keccak256(abi.encodePacked(_protocols[0]))==keccak256(abi.encodePacked("UNISWAP_V2"))){
                 expectedAmount = uniSwap.getAmountsOut(linkAmount,path);
                 uniSwap.swapExactETHForTokens{value: linkAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 3600);
+            } else{
+                revert("Unsupported DEX");
             }
         }
         if(_amountOfTokens[2] > 0){
@@ -59,9 +64,11 @@ contract SwapV2 is Initializable {
             if(keccak256(abi.encodePacked(_protocols[2]))==keccak256(abi.encodePacked("SUSHI"))){
                 expectedAmount = sushiSwap.getAmountsOut(uniAmount,path);
                 sushiSwap.swapExactETHForTokens{value: uniAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 3600);
-            }else {
+            }else if(keccak256(abi.encodePacked(_protocols[0]))==keccak256(abi.encodePacked("UNISWAP_V2"))) {
                 expectedAmount = uniSwap.getAmountsOut(uniAmount,path);
                 uniSwap.swapExactETHForTokens{value: uniAmount}(expectedAmount[1],path,msg.sender,block.timestamp + 3600);
+            }else {
+                revert("Unsupported DEX");
             }
         }
         return true;

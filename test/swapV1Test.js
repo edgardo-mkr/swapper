@@ -86,7 +86,15 @@ const hre = require('hardhat');
 
     describe("Testing incorrect input porcentages", function(){
       it("Should revert swap", async function(){
-        expect(hardhatSwap.swapTokens([50,50,50], {value: ethers.utils.parseEther('1.0')})).to.be.revertedWith("Error in porcentages of required tokens");
+        expect(hardhatSwap.swapTokens([50,50,50], {value: ethers.utils.parseEther('1.0')})).to.be.revertedWith("Error in percentages of required tokens");
+        expect(hardhatSwap.swapTokens([0,50,0], {value: ethers.utils.parseEther('1.0')})).to.be.revertedWith("Error in percentages of required tokens");
+        expect(hardhatSwap.swapTokens([-25,50,75], {value: ethers.utils.parseEther('1.0')})).to.be.revertedWith("Negative percentages not allow");
+      })
+    })
+
+    describe("Not passing any value to the function", function(){
+      it("Should revert swap", async function(){
+        expect(hardhatSwap.swapTokens([25,50,25])).to.be.revertedWith("No Ether has been sent");
       })
     })
   });
@@ -171,7 +179,13 @@ const hre = require('hardhat');
 
     describe("Testing incorrect input porcentages", function(){
       it("Should revert swap", async function(){
-        expect(hardhatSwap.swapTokens(protocolArr,[50,50,50], {value: ethers.utils.parseEther('1.0')})).to.be.revertedWith("Error in porcentages of required tokens");
+        expect(hardhatSwap.swapTokens(protocolArr,[50,50,50], {value: ethers.utils.parseEther('1.0')})).to.be.revertedWith("Error in percentages of required tokens");
+        expect(hardhatSwap.swapTokens(protocolArr,[0,50,0], {value: ethers.utils.parseEther('1.0')})).to.be.revertedWith("Error in percentages of required tokens");
+        expect(hardhatSwap.swapTokens(protocolArr,[-25,50,75], {value: ethers.utils.parseEther('1.0')})).to.be.revertedWith("Negative percentages not allow");      })
+    })
+    describe("Not passing any value to the function", function(){
+      it("Should revert swap", async function(){
+        expect(hardhatSwap.swapTokens(protocolArr,[25,50,25])).to.be.revertedWith("No Ether has been sent");
       })
     })
   });

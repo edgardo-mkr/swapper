@@ -19,8 +19,9 @@ contract SwapV1 is Initializable {
     // arr[0] = Dai, arr[1] = Link, arr[2] = Uni. THE ORDER MATTERS!!!!! e.g: [20,50,30] convert 20% to dai, 50% to Link and 30% to Uni.
     //if there is a token that is not desired to convert it must be set to "0". 
     function swapTokens(uint[3] memory _amountOfTokens) public payable returns(bool){
-        uint totalPorcent = _amountOfTokens[0]+_amountOfTokens[1]+_amountOfTokens[2];
-        require(totalPorcent == 100, "Error in porcentages of required tokens");//checking that the porcentages sum 100
+        require(_amountOfTokens[0]>=0 && _amountOfTokens[1]>=0 && _amountOfTokens[2]>=0, "Negative percentages not allow");
+        require(_amountOfTokens[0]+_amountOfTokens[1]+_amountOfTokens[2] == 100, "Error in percentages of required tokens");//checking that the porcentages sum 100
+        require(msg.value > 0, "No Ether has been sent");
         uint finalAmount = msg.value - (msg.value/1000);//substracting the fee from the deposited amount
         uint daiAmount = (finalAmount * _amountOfTokens[0])/100; //calculating the diferent amounts to swap for each token
         uint linkAmount = (finalAmount * _amountOfTokens[1])/100;//...
